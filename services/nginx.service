@@ -1,0 +1,18 @@
+#
+# This assumes you've already configured nginx with the following:
+#     --pid-path=/var/run/nginx.pid
+#
+[Unit]
+Description=nginx web server
+After=syslog.target network.target
+
+[Service]
+Type=forking
+PIDFile=/run/nginx.pid
+ExecStartPre=/usr/bin/nginx -t -q
+ExecStart=/usr/bin/nginx
+ExecStop=/usr/bin/nginx -s quit
+ExecReload=/usr/bin/nginx -s reload
+
+[Install]
+WantedBy=multi-user.target
