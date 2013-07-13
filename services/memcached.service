@@ -1,0 +1,10 @@
+[Unit]
+Description=Memcached caching system
+After=network.target
+
+[Service]
+User=memcached
+ExecStart=/usr/bin/memcached
+
+[Install]
+WantedBy=multi-user.target
